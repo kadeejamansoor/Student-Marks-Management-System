@@ -1,0 +1,813 @@
+import java.util.*;
+class CourseWork {
+	
+//---------------------------------------- (11) Best In Database Management System ------------------------------------------------------------------------
+	
+	public static void bestInDatabaseManagementSystem(String idName[][],int marks[][],String bestMarks[][]){
+		Scanner input = new Scanner(System.in);
+		clearConsole();
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\t\tBest In Database Management System\t\t\t\t\t|");
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		
+		System.out.println("\t+---------------+-----------------------+-----------+-----------+");
+		System.out.println("\t|ID\t\t|Name\t\t\t|DBMS Marks |PF Marks    |");
+		System.out.println("\t+---------------+-----------------------+-----------+-----------+");
+		
+		for(int x=0;x<bestMarks.length-1;x++){
+			for(int y=bestMarks.length-1;y>0;y--){
+			 	int pf1=Integer.valueOf(bestMarks[y][2]);
+				int pf2=Integer.valueOf(bestMarks[y-1][2]);
+					if(pf1>pf2){
+						String temppf1=bestMarks[y][2];
+						bestMarks[y][2]=bestMarks[y-1][2];
+						bestMarks[y-1][2]=temppf1;
+						
+						String tempid=bestMarks[y][0];
+						bestMarks[y][0]=bestMarks[y-1][0];
+						bestMarks[y-1][0]=tempid;
+						
+						String tempdbms1=bestMarks[y][1];
+						bestMarks[y][1]=bestMarks[y-1][1];
+						bestMarks[y-1][1]=tempdbms1;
+					}
+			}
+		}
+		L1:for(int x=0;x<bestMarks.length;x++){
+			L2:for(int y=0;y<idName.length;y++){
+				if(bestMarks[x][0].equals(idName[y][0])){
+					System.out.println("\t|"+bestMarks[x][0]+"\t\t|"+idName[y][1]+"\t\t\t|"+bestMarks[x][2]+"\t    |"+bestMarks[x][1]+"\t\t|");
+				}
+			}
+				if(bestMarks[x+1][2].equals("0")){
+					break L1;
+				}
+			}
+		System.out.println("\t+---------------+-----------------------+-----------+-----------+");
+		System.out.print("Do you want to go back to main menu (Y/n) :");
+		String t=input.next();	
+		System.out.println(); 
+			if(t.equals("n")){
+				clearConsole();	
+				bestInProgrammingFundementals(idName,marks,bestMarks);
+			
+			}else if(t.equals("Y")){
+				clearConsole();
+				welcomePage(idName,marks);			
+			}
+	}
+//----------------------------------------- (09) Best In Programming Fundementals -------------------------------------------------------------------------
+	
+	public static void bestInProgrammingFundementals(String idName[][],int marks[][],String bestMarks[][]){
+		Scanner input = new Scanner(System.in);
+		clearConsole();
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\t\tBest In Programming Fundementals\t\t\t\t\t|");
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		
+		System.out.println("\t+---------------+-----------------------+-----------+-----------+");
+		System.out.println("\t|ID\t\t|Name\t\t\t|PF Marks   |DBMS Marks |");
+		System.out.println("\t+---------------+-----------------------+-----------+-----------+");
+		
+		for(int x=0;x<bestMarks.length-1;x++){
+			for(int y=bestMarks.length-1;y>0;y--){
+			 	int pf1=Integer.valueOf(bestMarks[y][1]);
+				int pf2=Integer.valueOf(bestMarks[y-1][1]);
+					if(pf1>pf2){
+						String temppf1=bestMarks[y][1];
+						bestMarks[y][1]=bestMarks[y-1][1];
+						bestMarks[y-1][1]=temppf1;
+						
+						String tempid=bestMarks[y][0];
+						bestMarks[y][0]=bestMarks[y-1][0];
+						bestMarks[y-1][0]=tempid;
+						
+						String tempdbms1=bestMarks[y][2];
+						bestMarks[y][2]=bestMarks[y-1][2];
+						bestMarks[y-1][2]=tempdbms1;
+					}
+			}
+		}
+		L1:for(int x=0;x<bestMarks.length;x++){
+			L2:for(int y=0;y<idName.length;y++){
+				if(bestMarks[x][0].equals(idName[y][0])){
+					System.out.println("\t|"+bestMarks[x][0]+"\t\t|"+idName[y][1]+"\t\t\t|"+bestMarks[x][1]+"\t    |"+bestMarks[x][2]+"\t\t|");
+				}
+			}
+				if(bestMarks[x+1][1].equals("0")){
+					break L1;
+				}
+			}
+		System.out.println("\t+---------------+-----------------------+-----------+-----------+");
+		System.out.print("Do you want to go back to main menu (Y/n) :");
+		String t=input.next();	
+		System.out.println(); 
+			if(t.equals("n")||t.equals("N")){
+				clearConsole();	
+				bestInProgrammingFundementals(idName,marks,bestMarks);
+			
+			}else if(t.equals("Y")||t.equals("y")){
+				clearConsole();
+				welcomePage(idName,marks);			
+			}
+	}
+//----------------------------------------------- (08) Print Student Rank ----------------------------------------------------------------------------------
+	
+	public static void printStudentRanks(String idName[][],int marks[][],String sRank[][]){
+		Scanner input = new Scanner(System.in);
+		clearConsole();
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\t\t\tPrint Student Rank\t\t\t\t\t\t|");
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		
+		System.out.println("\t+-------+-------+-------------------------+-----------+----------+");
+		System.out.println("\t|Rank\t|ID\t|Name\t\t\t  |Total Marks|Avg. Marks|");
+		System.out.println("\t+-------+-------+-------------------------+-----------+----------+");
+		
+		L1:for(int x=0;x<sRank.length-1;x++){
+			L2:for(int y=0;y<idName.length;y++){
+				if(sRank[x][0].equals(idName[y][0])){
+					System.out.print("\t|"+(x+1)+"\t|"+sRank[x][0]+"\t|"+idName[y][1]+"\t\t\t  |\t   "+sRank[x][1]+"|\t    ");
+					double avg=(double)(marks[y][1]+marks[y][0])/2;
+					System.out.printf("%.2f",avg);
+					System.out.println("|");
+				}
+			}
+				if(sRank[x+1][1].equals("0")){
+					break L1;
+				}
+		}
+		System.out.println("\t+-------+-------+-------------------------+-----------+----------+");
+		System.out.print("Do you want to go back to main menu (Y/n) :");
+		String t=input.next();	
+		System.out.println(); 
+			if(t.equals("n")||t.equals("N")){
+				clearConsole();	
+				printStudentRanks(idName,marks,sRank);
+			
+			}else if(t.equals("Y")||t.equals("y")){
+				clearConsole();
+				welcomePage(idName,marks);			
+			}
+	}
+//----------------------------------------------- (07) Print Student Details -------------------------------------------------------------------------
+	
+	public static void printStudentDetails(String idName[][],int marks[][],String sRank[][]){
+		Scanner input = new Scanner(System.in);
+		clearConsole();
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\t\t\tPrint Student Details\t\t\t\t\t\t|");
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		
+		L1:for (int i = 0; i <1; i++){
+			System.out.print("Enter Student ID : ");
+			String tempory=input.next();
+			
+			int index=-1;
+			for(int x=0;x<idName.length;x++){
+				if(tempory.equals(idName[x][0])){
+					index=x;
+				}
+			}
+			if(index!=-1){
+				System.out.print("Student Name : "+idName[index][1]+"\n");
+					if(marks[index][0]!=0){
+						L2:for (int j = 0; j < sRank.length-1; j++){
+							if(sRank[j][0].equals(idName[index][0])){
+						
+							System.out.println("+-----------------------------------------------+---------------------------------+");
+							System.out.println("|Programming Fundomentol Marks     \t\t|\t\t\t\t"+marks[index][0]+"|");
+							System.out.println("|Database Management System Marks  \t\t|\t\t\t\t"+marks[index][1]+"|");
+								int total=marks[j][0]+marks[index][1];
+								System.out.println("|Total Marks                            \t|\t\t\t\t"+total+"|");
+								double avg=(double)total/2;
+								System.out.print("|Avg.Marks                              \t|\t\t\t     ");
+								System.out.printf("%.2f",avg);
+								System.out.println("|");
+						
+							int count=0;
+							for(int x=0;x<sRank.length;x++){
+								if(!sRank[x][1].equals("0")){
+									count++;
+								}
+							}
+							if((j+1)!=count){
+								switch(j+1){
+								case 1:System.out.println("|Rank                              \t\t|\t\t\t"+(j+1)+"(First)|");break;
+								case 2:System.out.println("|Rank                              \t\t|\t\t\t"+(j+1)+"(Second)|");break;
+								case 3:System.out.println("|Rank                              \t\t|\t\t\t"+(j+1)+"(Third)|");break;
+								default:System.out.println("|Rank                              \t\t|\t\t\t"+(j+1)+"|");
+								}
+								System.out.println("+-----------------------------------------------+---------------------------------+");
+							}else{
+								System.out.println("|Rank                              \t\t|\t\t\t   "+(j+1)+"(Last)|");
+								System.out.println("+-----------------------------------------------+---------------------------------+");
+						
+							}
+								System.out.print("Do you want to search another student details? (Y/n) :");
+								String k=input.next();
+								System.out.println(); 
+								if(k.equals("n")||k.equals("N")){
+									clearConsole();
+									welcomePage(idName,marks);
+									break;
+								}else if(k.equals("Y")||k.equals("y")){
+									i--;
+									clearConsole();	
+									System.out.println("-----------------------------------------------------------------------------------------------------------------");
+									System.out.println("|\t\t\t\t\t\tPrint Student Details\t\t\t\t\t\t|");
+									System.out.println("-----------------------------------------------------------------------------------------------------------------");
+									continue L1;
+								}
+						}else{
+							continue L2;
+						}
+					}		
+								
+				}else{
+						System.out.println("Marks yet to be added.");
+						System.out.print("Do you want to search another student ? (Y/n) :");
+					String t=input.next();	
+					System.out.println(); 
+						if(t.equals("n")||t.equals("N")){
+							clearConsole();
+							welcomePage(idName,marks);
+							break;
+						}else if(t.equals("Y")||t.equals("y")){
+							i--;
+							clearConsole();	
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							System.out.println("|\t\t\t\t\t\tPrint Student Details\t\t\t\t\t\t|");
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							continue L1;
+						}
+					}	
+			}else{
+				System.out.print("Invalid Student ID. Do you want to search again? (Y/n) :");
+				String t=input.next();	
+				System.out.println(); 
+					if(t.equals("n")||t.equals("N")){
+					clearConsole();							
+					welcomePage(idName,marks);
+						break;
+					}else if(t.equals("Y")||t.equals("y")){
+					i--;
+					continue L1;
+					}
+			}
+		}
+	}
+//------------------------------------------------ (06) Delete Student -----------------------------------------------------------------------------------
+	
+	public static void deleteStudent(String idName[][],int marks[][]){
+		Scanner input = new Scanner(System.in);
+		clearConsole();
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\t\t\tDelete Student\t\t\t\t\t\t\t|");
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		
+		L1:for (int i = 0; i < idName.length; i++){
+			System.out.print("Enter Student ID : ");
+			String tempory=input.next();
+			
+			int index=-1;
+			for(int x=0;x<idName.length;x++){
+				if(tempory.equals(idName[x][0])){
+					index=x;
+				}
+			}
+				
+		L2:for (int j = 0; j < idName.length; j++){
+				if(index!=-1){
+					idName[index][0]="0";
+					idName[index][1]="0";
+					
+						marks[index][0]=0;
+						marks[index][1]=0;
+						System.out.print("Student has been deleted successfully\nDo you want delete another student details? (Y/n) ");
+						String st=input.next();
+						System.out.println(); 
+						if(st.equals("n")||st.equals("N")){
+							clearConsole();
+							welcomePage(idName,marks);
+							break;
+						}else if(st.equals("Y")||st.equals("y")){
+							i--;
+							clearConsole();	
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							System.out.println("|\t\t\t\t\t\tDelete Student\t\t\t\t\t\t\t|");
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							continue L1;
+						}
+			}else{
+				 
+					System.out.print("Invalid Student ID. Do you want to search again? (Y/n) :");
+					String t=input.next();	
+					System.out.println(); 
+						if(t.equals("n") ||t.equals("N")){
+							clearConsole();
+							welcomePage(idName,marks);
+							break;
+						}else if(t.equals("Y")||t.equals("y")){
+						i--;
+						continue L1;
+					}
+			}
+		}
+	}
+}
+//-------------------------------------------------- (05) Update Marks ------------------------------------------------------------------------------
+	
+  	public static void updateMarks(String idName[][],int marks[][]){
+		Scanner input = new Scanner(System.in);
+		clearConsole();
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\t\t\tUPDATE MARKS\t\t\t\t\t\t\t|");
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+	
+		L1:for (int i = 0; i < idName.length; i++){
+			System.out.print("Enter Student ID : ");
+			String tempory=input.next();
+			
+			int index=-1;
+			for(int x=0;x<idName.length;x++){
+				if(tempory.equals(idName[x][0])){
+					index=x;
+				}
+			}
+			
+			L2:for (int j=0; j < idName.length; j++){
+				if(index!=-1){
+					System.out.print("Student Name : "+idName[index][1]+"\n");
+					
+				if(marks[index][0]==0 && marks[index][1]==0){
+					System.out.println("This student's marks yet to be added");
+					System.out.print("Do you want to update the marks of another student ? (Y/n) :");
+					String k=input.next();
+						System.out.println(); 
+						if(k=="n" ||k=="N"){
+							clearConsole();
+							welcomePage(idName,marks);
+							break;
+						}else if(k=="Y"||k=="y"){
+							i--;
+							clearConsole();	
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							System.out.println("|\t\t\t\t\t\tUPDATE MARKS\t\t\t\t\t\t\t|");
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							continue L1;
+						}
+					}	
+				System.out.print("\nProgramming Fundamentals Marks : "+marks[j][0]+"\n");
+				System.out.print("Database Management System Marks : "+marks[j][1]+"\n");
+									
+		L3 :for(int x=0;x<1;x++){
+			System.out.print("\nEnter new Programming Fundamentals Marks : ");
+			int tempory5=input.nextInt();
+			if(marks[index][0]<0 || marks[index][0]>100){
+				System.out.println("Invalid marks, please enter correct marks.");
+			x--;
+			}else{
+				//if(marks[j][0]>0 || marks[j][0]<100);
+				marks[index][0]=tempory5;
+			}
+		}
+		L4:for(int x=0;x<1;x++){
+				System.out.print("Enter new Database Management System Marks : ");
+				int tempory6=input.nextInt();
+				if(marks[index][1]<0 || marks[index][1]>100){
+					System.out.println("Invalid marks, please enter correct marks.");
+				x--;
+				}else{
+					marks[index][1]=tempory6;
+				}
+			}
+				System.out.print("Student details has been updated successfully.\nDoyou want to update another student details? (Y/n) :");
+				String st=input.next();
+						System.out.println(); 
+						if(st.equals("n")|| st.equals("N")){
+							clearConsole();
+							welcomePage(idName,marks);
+							break;
+						}else if(st.equals("Y") ||st.equals("y")){
+							i--;
+							clearConsole();	
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							System.out.println("|\t\t\t\t\t\tUPDATE MARKS\t\t\t\t\t\t\t|");
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							continue L1;
+						}
+					}else{
+				System.out.print("Invalid Student ID. Do you want to search again? (Y/n) :");
+				String t=input.next();	
+					System.out.println(); 
+					if(t.equals("n")|| t.equals("N")){
+						clearConsole();
+						welcomePage(idName,marks);
+						break;
+					}else if(t.equals("Y") ||t.equals("y")){
+					i--;
+					continue L1;
+				}
+			}
+		}
+	}
+}
+//------------------------------------------------ (04) Update Student Details -----------------------------------------------------------------------------	
+
+	public static void updateStudentDetails(String idName[][],int marks[][]){
+		Scanner input=new Scanner(System.in);
+		clearConsole();
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\t\t\tUpdate Student Detail\t\t\t\t\t\t|");
+		System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		
+		L1:for (int i = 0; i < idName.length; i++){
+			System.out.print("Enter Student ID : ");
+			String tempory=input.next();
+			
+			int index=-1;
+			for(int x=0;x<idName.length;x++){
+				if(tempory.equals(idName[x][0])){
+					index=x;
+				}
+			}
+			
+			L2:for (int j=0; j < idName.length; j++){
+				if(index!=-1){
+					System.out.print("Student Name : "+idName[index][1]+"\n");
+					System.out.print("\nEnter the new student name : ");
+					String newSt=input.next();
+					idName[index][1]=newSt;
+				
+				System.out.print("Student details has been updated successfully.\nDoyou want to update another student details? (Y/n) :");
+					String st=input.next();
+					System.out.println(); 
+					if(st.equals("n")|| st.equals("N")){
+						clearConsole();
+						welcomePage(idName,marks);
+						//break;
+					}else if(st.equals("Y") ||st.equals("y")){
+						i--;
+						clearConsole();	
+						System.out.println("-----------------------------------------------------------------------------------------------------------------");
+						System.out.println("|\t\t\t\t\t\tUpdate Student Detail\t\t\t\t\t\t|");
+						System.out.println("-----------------------------------------------------------------------------------------------------------------");
+						continue L1;
+				}
+			}else{			
+				System.out.print("Invalid Student ID. Do you want to search again? (Y/n) :");
+				String t=input.next();	
+					System.out.println(); 
+					if(t.equals("n")|| t.equals("N")){
+						clearConsole();
+						welcomePage(idName,marks);
+						//break;
+					}else if(t.equals("Y") ||t.equals("y ")){
+					i--;
+					continue L1;
+				}
+			}
+		}
+	}
+}
+//------------------------------------------------- (03) Add Marks ---------------------------------------------------------------------------------------
+	
+	public static void addMarks(String idName[][],int marks[][]){
+		Scanner input=new Scanner(System.in);
+		clearConsole();
+		System.out.println("---------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\t\t\tAdd Marks\t\t\t\t\t\t|");
+		System.out.println("---------------------------------------------------------------------------------------------------------");
+		
+			L1:for (int i = 0; i < idName.length; i++){
+				System.out.print("Enter Student ID : ");
+				String tempory=input.next();
+				
+			int index=-1;
+			for(int x=0;x<idName.length;x++){
+				if(tempory.equals(idName[x][0])){
+					index=x;
+				}
+			}
+			
+			L2:for (int j = 0; j < idName.length; j++){
+				if(index!=-1){
+					System.out.println("Student Name : "+idName[index][1]+"\n");
+					if(marks[index][0]==0 && marks[index][1]==0){	
+			L3 :for(int x=0;x<1;x++){
+				System.out.print("Programming Fundamentals Marks : ");
+				int tempory3=input.nextInt();
+					if(tempory3<0 || tempory3>100){
+						System.out.println("Invalid marks, please enter correct marks.");
+						x--;
+					}else{
+						if(tempory3>0 || tempory3<100);
+						marks[index][0]=tempory3;
+					}
+				}
+			L4:for(int x=0;x<1;x++){
+				System.out.print("Database Management System Marks :");
+				int tempory4=input.nextInt();
+					if(tempory4<0 || tempory4>100){
+						System.out.println("Invalid marks, please enter correct marks.");
+						x--;
+					}else{
+						if(tempory4>0 || tempory4<100);
+						marks[index][1]=tempory4;
+					}
+				}
+				System.out.print("Student has been added successfully. Do you want to add a new marks (Y/n) :");
+				String st=input.next();
+				if(st.equals("n")||st.equals("N")){
+					clearConsole();
+					welcomePage(idName,marks);
+					break;
+				}else if(st.equals("Y")||st.equals("y")){
+					clearConsole();
+					System.out.println("-----------------------------------------------------------------------------------------------------------------");
+					System.out.println("|\t\t\t\t\t  ADD MARKS \t\t\t\t\t\t\t\t|");
+					System.out.println("-----------------------------------------------------------------------------------------------------------------");
+					continue L1;
+					}
+				}else {
+					System.out.print("This Student's marks have been already added.\nIf you want to update the marks, please use [4] Update Marks option.\n\n");
+					System.out.print("Do you want to add marks for another student? (Y/n) :");
+					String st =input.next();
+					System.out.println(); 
+						if(st.equals("n")|| st.equals("N")){
+							clearConsole();
+							welcomePage(idName,marks);
+							break;
+						}else if(st.equals("Y")||st.equals("y")){
+							i--;
+							clearConsole();	
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							System.out.println("|\t\t\t\t\t  ADD MARKS \t\t\t\t\t\t\t\t|");
+							System.out.println("-----------------------------------------------------------------------------------------------------------------");
+							continue L1;
+						}
+					}
+				}else{
+						System.out.print("Invalid Student ID. Do you want to search again? (Y/n) :");
+						String a =input.next();	
+						System.out.println(); 
+						if(a.equals("n")|| a.equals("N")){
+							clearConsole();
+							welcomePage(idName,marks);
+							break;
+						}else if(a.equals("Y")||a.equals("y")){
+						i--;
+						continue L1;
+						}
+				}		
+			}	
+		}
+	}
+//--------------------------------------------- (02) Add New Student Marks --------------------------------------------------------------------------------
+	
+	public static void addNewStudentWithMarks(String idName[][],int marks[][]){
+		Scanner input=new Scanner(System.in);
+		clearConsole();
+		System.out.println("----------------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\t\t\tAdd New Student With Marks\t\t\t\t\t|");
+		System.out.println("----------------------------------------------------------------------------------------------------------------");
+	
+		L1:for (int i = 0; i < idName.length; i++){
+			System.out.print("Enter Student ID : ");
+			String tempory=input.next();
+			
+			int index=-1;
+			for(int x=0;x<idName.length;x++){
+				if(tempory.equals(idName[x][0])){
+					index=x;
+				}
+			}
+		L2:for (int j = 0; j < idName.length; j++){
+			if(index!=-1){
+				System.out.println("The Studetn ID already exists.");
+				i--;continue L1;
+			}else{
+				if(idName[j][0].equals("0")){
+					idName[j][0]=tempory;
+					System.out.print("Enter Student Name : ");
+					idName[j][1]=input.next();
+							
+			L3:for(int x=0;x<1;x++){
+				System.out.print("\nProgramming Fundamental Marks :");
+				int tempory1=input.nextInt();
+			if(tempory1<0 || tempory1>100){
+				System.out.println("Invalid marks, please enter correct marks.");
+				x--;
+			}else{
+				if(tempory1>0 || tempory1<100);
+				marks[j][0]=tempory1;
+				}
+			}
+			
+			L4:for(int x=0;x<1;x++){
+				System.out.print("Database Management System Marks :");
+				int tempory2=input.nextInt();
+				
+				if(tempory2<0 || tempory2>100){
+					System.out.println("Invalid marks, please enter correct marks.");
+					x--;
+				}else{
+					if(tempory2>0 || tempory2<100);
+					marks[j][1]=tempory2;
+				}
+			}
+			
+			System.out.print("Student has been added successfully. Do you want to add a new student (Y/n) :");
+			String option =input.next();
+			switch(option){
+			case "Y":{
+				clearConsole();
+				System.out.println("----------------------------------------------------------------------------------------------------------------");
+				System.out.println("|\t\t\t\t\t\tAdd New Student With Marks\t\t\t\t\t|");
+				System.out.println("----------------------------------------------------------------------------------------------------------------");
+				continue L1;	
+			}
+			case "n":{
+				clearConsole();
+				welcomePage(idName,marks);
+				}
+					case "y":{
+						clearConsole();
+						System.out.println("---------------------------------------------------------------------------------------------------------");
+						System.out.println("|\t\t\t\t\t\tADD NEW STUDENT\t\t\t\t\t\t\t|");
+						System.out.println("---------------------------------------------------------------------------------------------------------");
+						continue L1;	
+					}	
+					case "N":{
+						clearConsole();
+						welcomePage(idName,marks); 
+					}
+					default:{
+						System.out.println("Sorry invalid choice.");
+						break L1;
+						}
+					}
+					}else{
+						continue L2;
+					}
+				}
+			}	
+		}
+	 }
+//--------------------------------------------- (01) Add New Student ------------------------------------------------------------------------------
+	
+	public static void addNewStudent(String idName[][],int marks[][]){
+	Scanner input=new Scanner(System.in);
+		clearConsole();
+			System.out.println("-----------------------------------------------------------------------------------------------------------------");
+			System.out.println("|\t\t\t\t\t\tADD NEW STUDENT\t\t\t\t\t\t\t|");
+			System.out.println("-----------------------------------------------------------------------------------------------------------------");
+		
+		L1:for (int i = 0; i < idName.length; i++){
+		System.out.print("Enter Student ID : ");
+			String tempory=input.next();
+			int index=-1;
+			for(int x=0;x<idName.length;x++){
+				if(tempory.equals(idName[x][0])){
+					index=x;
+				}
+			}
+					if(index!=-1){
+						System.out.println("The Student ID already exists\n");
+						i--;continue L1;
+					}else{
+						L2:for (int j = 0; j < idName.length;j++){
+						if(idName[j][0].equals("0")){
+							idName[j][0]=tempory;
+							System.out.print("Enter Student Name : ");
+							idName[i][1]=input.next();
+							System.out.print("Student has been added successfully. Do you want to add a new student (Y/n) :");
+				String option =input.next();
+				switch(option){
+					case "Y":{
+						clearConsole();
+						System.out.println("---------------------------------------------------------------------------------------------------------");
+						System.out.println("|\t\t\t\t\t\tADD NEW STUDENT\t\t\t\t\t\t\t|");
+						System.out.println("---------------------------------------------------------------------------------------------------------");
+						continue L1;	
+					}	
+					case "n":{
+						clearConsole();
+						welcomePage(idName,marks);
+					}
+					case "y":{
+						clearConsole();
+						System.out.println("---------------------------------------------------------------------------------------------------------");
+						System.out.println("|\t\t\t\t\t\tADD NEW STUDENT\t\t\t\t\t\t\t|");
+						System.out.println("---------------------------------------------------------------------------------------------------------");
+						continue L1;	
+					}	
+					case "N":{
+						clearConsole();
+						welcomePage(idName,marks);
+					}
+					default:{
+						System.out.println("Sorry invalid choice.");
+						break L1;
+						}
+				}
+				}else{
+					continue L2;
+					}
+				}
+			}
+		}
+	}
+//--------------------------------------------------- (Clear Console) -------------------------------------------------------------------------------
+	
+	public final static void clearConsole() {
+		try {
+			final String os = System.getProperty("os.name");
+			if (os.contains("Windows")) {
+				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+			} else {
+				System.out.print("\033[H\033[2J");
+				System.out.flush();
+			}
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+	}
+//--------------------------------------------------- (Welcome Page) ---------------------------------------------------------------------
+	
+	public static void welcomePage(String idName[][],int marks[][]){
+		Scanner input=new Scanner(System.in);
+		
+		String sRank[][]=new String[idName.length][2];
+		for(int j=0;j<sRank.length;j++){
+			
+				sRank[j][0]=idName[j][0];
+				sRank[j][1]=(marks[j][0]+marks[j][1]+"");
+		}
+		String bestMarks[][]=new String[idName.length][3];
+		for(int j=0;j<bestMarks.length;j++){
+			
+				bestMarks[j][0]=(idName[j][0]);
+				bestMarks[j][1]=(marks[j][0]+"");
+				bestMarks[j][2]=(marks[j][1]+"");
+			
+		}	
+		for(int x=0;x<sRank.length;x++){
+			for(int y=sRank.length-1;y>0;y--){
+			 	int total1=Integer.valueOf(sRank[y][1]);
+				int total2=Integer.valueOf(sRank[y-1][1]);
+				if(total1>total2){
+					String temptotal=sRank[y][1];
+					sRank[y][1]=sRank[y-1][1];
+					sRank[y-1][1]=temptotal;
+					
+					String tempid=sRank[y][0];
+					sRank[y][0]=sRank[y-1][0];
+					sRank[y-1][0]=tempid;
+				}
+			}
+		}	
+		System.out.println("---------------------------------------------------------------------------------------------------------");
+		System.out.println("|\t\t\t\tWELCOME TO GDSE MARKS MANAGEMENT SYSTEM\t\t\t\t\t|");
+		System.out.println("---------------------------------------------------------------------------------------------------------");
+		System.out.println();
+		System.out.print("[1] Add New Student\t\t\t\t[2] Add New Student With Marks\n");
+		System.out.print("[3] Add Marks\t\t\t\t\t[4] Upadate Student Details\n");
+		System.out.print("[5] Update Marks\t\t\t\t[6] Delete Student\n");
+		System.out.print("[7] Print Student Details\t\t\t[8] Print Student Ranks\n");
+		System.out.print("[9] Best In Programming Fundementals\t\t[10] Best In Database Management System\n");
+		System.out.println();
+		System.out.print("Enter an option to continue > ");
+		
+		int option =input.nextInt();
+		
+		switch(option){
+			case 1:addNewStudent(idName,marks);break;
+			case 2:addNewStudentWithMarks(idName,marks);break;
+			case 3:addMarks(idName,marks);break;
+			case 4:updateStudentDetails(idName,marks);break;
+			case 5:updateMarks(idName,marks);break;
+			case 6:deleteStudent(idName,marks);break;
+			case 7:printStudentDetails(idName,marks,sRank);break;
+			case 8:printStudentRanks(idName,marks,sRank);break;
+			case 9:bestInProgrammingFundementals(idName,marks,bestMarks);break;
+			case 10:bestInDatabaseManagementSystem(idName,marks,bestMarks);break;
+			default :System.out.print("Sorry.Invalid Choice.");	 
+		}	
+	}
+//----------------------------------------------------- Main Method -----------------------------------------------------------------------------------
+	
+	public static void main(String []args){
+	Scanner input=new Scanner (System.in);
+	String idName[][]=new String[6][2];
+
+	for(int i=0;i<idName.length;i++){
+		for(int j=0;j<idName[0].length;j++){
+			idName[i][j]="0";
+		}
+	}
+	int marks[][]=new int[idName.length][idName[0].length];
+	welcomePage(idName,marks);
+	}
+}
